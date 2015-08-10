@@ -17,8 +17,10 @@ const buildJs = (watch = false) => {
       entry: paths.src + '/js/index.js',
       output: {
         path: paths.dist,
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        sourceMapFilename: 'bundle.js.map'
       },
+      devtool: '#source-map',
       module: {
         loaders: [{
           test: /\.js$/,
@@ -30,7 +32,7 @@ const buildJs = (watch = false) => {
           }
         }],
         resolve: {
-          extensions: ['', '.js', '.jsx']
+          extensions: ['', '.js']
         }
       }
     }, (err, stats) => {

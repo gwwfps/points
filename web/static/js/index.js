@@ -1,13 +1,12 @@
-import {Socket} from "./vendor/phoenix";
+import React from 'react';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
-// let socket = new Socket("/ws")
-// socket.connect()
-// let chan = socket.chan("topic:subtopic", {})
-// chan.join().receive("ok", resp => {
-//   console.log("Joined succesffuly!", resp)
-// })
+import App from './containers/app';
 
-let App = {
-}
 
-export default App
+injectTapEventPlugin();
+
+React.render(
+  <App />,
+  document.getElementById('main')
+);
