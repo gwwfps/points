@@ -16,14 +16,18 @@ export default class PointsApp extends Component {
     const { tournaments, dispatch } = this.props;
     const actions = bindActionCreators(Actions, dispatch);
 
-    const tournament = tournaments.selected;
+    const tournament = this.findSelectedTournament(tournaments);
 
     return (
       <div>
-        <div className="row"><MainToolbar tournaments={tournaments} actions={actions} /></div>
+        <div className="row"><MainToolbar tournaments={tournaments} tournament={tournament} actions={actions} /></div>
         <div className="row"><SummaryCard tournament={tournament} /></div>
         <div className="row"><StageTabs tournament={tournament} /></div>
       </div>
     );
+  }
+
+  findSelectedTournament(tournaments) {
+    return tournaments.instances.find(tournament => (tournament.id === parseInt(this.props.params.tournamentId, 10))) || tournaments.instances[0];
   }
 }

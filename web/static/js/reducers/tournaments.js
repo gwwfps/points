@@ -30,15 +30,39 @@ const samples = [
   }
 ];
 
+const selectTournament = function(state, action) {
+  return {
+    ...state,
+    selected: state.instances.find(tournament => tournament.id === action.id)
+  };
+};
+
+const tournamentReducers = {
+  SELECT_TOURNAMENT: selectTournament
+};
+
+const selectedReducers = {
+
+};
+
 export default function tournaments(state = { selected: samples[0], instances: samples }, action) {
-  switch (action.type) {
-  case SELECT_TOURNAMENT:
+  const tournamentReducer = tournamentReducers[action.type];
+  if (tournamentReducer) {
+    return tournamentReducer(state, action);
+  }
+
+  const selectedReducer = selectedReducers[action.type];
+  if (selectedReducer) {
+    const selectedIndex = state.instances.indexOf(state.selected);
+    const selected = selectedReducer(state.selected, action);
     return {
       ...state,
-      selected: state.instances.find(tournament => tournament.id === action.id)
+      instance: state.instances.slice(0, selectedIndex)
+        .concat(selected)
+        .concat(state.instances.slice(selectedIndex + 1)),
+      selected
     };
-
-  default:
-    return state;
   }
+
+  return state;
 }

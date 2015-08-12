@@ -18,7 +18,9 @@ defmodule Points.Router do
     get "/", PageController, :index
   end
 
-  scope "/api", Points do
+  scope "/api/tournaments/", Points do
     pipe_through :api
+
+    get "/", TournamentApiController, :index
   end
 end
