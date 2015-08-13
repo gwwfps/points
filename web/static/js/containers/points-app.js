@@ -22,7 +22,7 @@ export default class PointsApp extends Component {
       <div>
         <div className="row"><MainToolbar tournaments={tournaments} tournament={tournament} actions={actions} /></div>
         <div className="row"><SummaryCard tournament={tournament} /></div>
-        <div className="row"><StageTabs tournament={tournament} /></div>
+        <div className="row"><StageTabs tournament={tournament} selected={parseInt(this.props.params.tabIndex, 10)} /></div>
       </div>
     );
   }

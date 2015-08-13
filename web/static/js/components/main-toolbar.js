@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Toolbar, ToolbarGroup, DropDownMenu } from 'material-ui';
+import { DropDownMenu } from 'material-ui';
 
 export default class MainToolbar extends Component {
   static contextTypes = {
@@ -11,11 +11,7 @@ export default class MainToolbar extends Component {
     const selectedIndex = this.props.tournaments.instances.indexOf(this.props.tournament);
 
     return (
-      <Toolbar>
-        <ToolbarGroup key={0} float='right'>
-          <DropDownMenu menuItems={menuItems} onChange={::this.onSelectTournament} selectedIndex={selectedIndex} />
-        </ToolbarGroup>
-      </Toolbar>
+      <DropDownMenu menuItems={menuItems} onChange={::this.onSelectTournament} selectedIndex={selectedIndex} />
     );
   }
 

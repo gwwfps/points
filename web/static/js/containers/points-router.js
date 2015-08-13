@@ -8,7 +8,7 @@ export default class PointsRouter extends Component {
   render() {
     return (
       <Router history={this.props.history}>
-        <Route path='/(:tournamentId)(/:tabName)' component={PointsApp}>
+        <Route path='/(:tournamentId)(/:tabIndex)' component={PointsApp}>
         </Route>
       </Router>
     );

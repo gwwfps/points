@@ -7,10 +7,16 @@ import Playoffs from './playoffs';
 
 
 export default class StageTabs extends Component {
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  };
+
   render() {
+    const selectedIndex = isNaN(this.props.selected) ? this.props.tournament.phase : this.props.selected;
+
     return (
       <Paper zDepth={1}>
-        <Tabs initialSelectedIndex={this.props.tournament.phase}>
+        <Tabs initialSelectedIndex={selectedIndex} onChange={::this.onChange} key={this.props.tournament.id}>
           <Tab label="Signups">
             <Signups tournament={this.props.tournament} />
           </Tab>
@@ -23,6 +29,10 @@ export default class StageTabs extends Component {
         </Tabs>
       </Paper>
     );
+  }
+
+  onChange(index) {
+    this.context.router.transitionTo(`/${this.props.tournament.id}/${index}`);
   }
 }
 

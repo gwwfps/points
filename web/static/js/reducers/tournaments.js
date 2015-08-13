@@ -5,6 +5,7 @@ const samples = [
     id: 625325423,
     name: 'Sample tournament',
     notes: 'Signup soon! Tons of prizes.',
+    start: 1439442451786,
     phase: 0,
     participants: [
       { name: 'Some guy' }
@@ -13,7 +14,8 @@ const samples = [
   {
     id: 2312451,
     name: 'In progress tournament',
-    notes: 'Signup soon! Tons of prizes.',
+    notes: 'League going on',
+    start: 1325635200000,
     phase: 1,
     participants: [
       { name: 'Some guy' }
@@ -22,8 +24,20 @@ const samples = [
   {
     id: 5215141234,
     name: 'Playoffs tournament',
-    notes: 'Signup soon! Tons of prizes.',
+    notes: 'EDIT: Playoffs happening!',
+    start: 1325635200000,
     phase: 2,
+    participants: [
+      { name: 'Some guy' }
+    ]
+  },
+  {
+    id: 521514123432,
+    name: 'Playoffs tournament 2',
+    notes: 'Oldest tournament',
+    start: 1325635200000,
+    end: 1439442451786,
+    phase: 3,
     participants: [
       { name: 'Some guy' }
     ]
