@@ -5,16 +5,16 @@ const samples = [
     id: 625325423,
     name: 'Sample tournament',
     notes: 'Signup soon! Tons of prizes.',
+    rules: 'fdsfasfasfasfas',
     start: 1439442451786,
     phase: 0,
-    participants: [
-      { name: 'Some guy' }
-    ]
+    participants: Array.from(Array(20).keys()).map(i => ({ name: `Some guy ${i}`, id: i }))
   },
   {
     id: 2312451,
     name: 'In progress tournament',
     notes: 'League going on',
+    rules: 'fdsfasfasfasfas',
     start: 1325635200000,
     phase: 1,
     participants: [
@@ -25,6 +25,7 @@ const samples = [
     id: 5215141234,
     name: 'Playoffs tournament',
     notes: 'EDIT: Playoffs happening!',
+    rules: 'fdsfasfasfasfas',
     start: 1325635200000,
     phase: 2,
     participants: [
@@ -35,6 +36,7 @@ const samples = [
     id: 521514123432,
     name: 'Playoffs tournament 2',
     notes: 'Oldest tournament',
+    rules: 'fdsfasfasfasfas',
     start: 1325635200000,
     end: 1439442451786,
     phase: 3,
