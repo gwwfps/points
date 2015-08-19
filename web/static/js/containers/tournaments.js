@@ -11,7 +11,7 @@ import SummaryCard from '../components/summary-card';
 @connect(state => ({
   tournaments: state.tournaments
 }))
-export default class PointsApp extends Component {
+export default class Tournaments extends Component {
   render() {
     const { tournaments, dispatch } = this.props;
     const actions = bindActionCreators(Actions, dispatch);

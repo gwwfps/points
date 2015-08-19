@@ -6,10 +6,12 @@ import ParticipantList from './participant-list';
 
 export default class Signups extends Component {
   render() {
+    const isActive = this.isActivePhase();
+
     return (
       <div className="panel">
         <div className="u-pull-right">
-          <RaisedButton label="Sign up" primary={true} disabled={!this.isActivePhase()} onClick={::this.onClickSignup} />
+          <RaisedButton label="Sign up" primary={true} disabled={!isActive} onClick={::this.onClickSignup} />
         </div>
         <h4>{this.props.tournament.participants.length} people signed up so far.</h4>
         <ParticipantList participants={this.props.tournament.participants} />

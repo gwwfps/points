@@ -1,1 +1,3 @@
+export const BOOTSTRAP = 'BOOTSTRAP';
+
 export const SELECT_TOURNAMENT = 'SELECT_TOURNAMENT';

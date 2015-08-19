@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 
 import * as reducers from '../reducers';
 import ThemeManager from '../utils/theme-manager';
-import PointsRouter from './points-router';
+import AppRouter from './router';
 
 
 const reducer = combineReducers(reducers);
@@ -16,7 +16,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {() => <PointsRouter history={this.props.history} />}
+        {() => <AppRouter history={this.props.history} />}
       </Provider>
     );
   }

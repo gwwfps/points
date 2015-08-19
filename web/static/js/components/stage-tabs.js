@@ -32,7 +32,7 @@ export default class StageTabs extends Component {
   }
 
   onChange(index) {
-    this.context.router.transitionTo(`/${this.props.tournament.id}/${index}`);
+    this.context.router.transitionTo(`/t/${this.props.tournament.id}/${index}`);
   }
 }
 

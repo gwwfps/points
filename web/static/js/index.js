@@ -11,7 +11,9 @@ injectTapEventPlugin();
 
 const history = new HashHistory();
 
-React.render(
-  <App history={history} />,
-  document.getElementById('main')
-);
+window.StartPoints = (data) => {
+  React.render(
+    <App history={history} boostrap={data} />,
+    document.getElementById('main')
+  );
+};

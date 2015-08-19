@@ -16,6 +16,6 @@ export default class MainToolbar extends Component {
   }
 
   onSelectTournament(e, selectedIndex, menuItem) {
-    this.context.router.transitionTo(`/${menuItem.payload}`);
+    this.context.router.transitionTo(`/t/${menuItem.payload}`);
   }
 }
