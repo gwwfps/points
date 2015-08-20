@@ -13,7 +13,7 @@ const history = new HashHistory();
 
 window.StartPoints = (data) => {
   React.render(
-    <App history={history} boostrap={data} />,
+    <App history={history} bootstrap={data} />,
     document.getElementById('main')
   );
 };

@@ -7,44 +7,54 @@ import Login from './login';
 import Tournaments from './tournaments';
 
 
+const routes = {
+  root: '/',
+  tournaments: '/t/',
+  login: '/login',
+  admin: '/admin'
+};
+
 @connect(state => ({
   user: state.user
 }))
-class DefaultRoute extends Component {
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  };
+export default class AppRouter extends Component {
+  render() {
+    return (
+      <Router history={this.props.history}>
+        <Route path={routes.root} onEnter={::this.defaultRoute} />
+        <Route path={`${routes.tournaments}(:tournamentId)(/:tabIndex)`} component={Tournaments} onEnter={::this.requiresAuth} />
+        <Route path={routes.login} component={Login} />
+        <Route path={routes.admin} component={Admin} onEnter={::this.requiresAdmin} />
+      </Router>
+    );
+  }
 
-  componentWillMount() {
+  defaultRoute(nextState, transition) {
     const { user } = this.props;
 
     let route;
     if (user.isAuthenticated) {
       if (user.isAdmin) {
-        route = '/admin';
+        route = routes.admin;
       } else {
-        route = '/t/';
+        route = routes.tournaments;
       }
     } else {
-      route = '/login';
+      route = routes.login;
     }
-    this.context.router.transitionTo(route);
+    transition.to(route);
   }
 
-  render() {
-    return (<span></span>);
+  requiresAuth(nextState, transition) {
+    if (!this.props.user.isAuthenticated) {
+      transition.to(routes.login);
+    }
   }
-}
 
-export default class AppRouter extends Component {
-  render() {
-    return (
-      <Router history={this.props.history}>
-        <Route path='/' component={DefaultRoute} />
-        <Route path='/t/(:tournamentId)(/:tabIndex)' component={Tournaments} />
-        <Route path='/login' component={Login} />
-        <Route path='/admin' component={Admin} />
-      </Router>
-    );
+  requiresAdmin(nextState, transition) {
+    const { user } = this.props;
+    if (!user.isAuthenticated || !user.isAdmin) {
+      transition.to(routes.login);
+    }
   }
 }

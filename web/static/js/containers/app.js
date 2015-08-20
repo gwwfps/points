@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import * as reducers from '../reducers';
 import ThemeManager from '../utils/theme-manager';
 import AppRouter from './router';
+import { BOOTSTRAP } from '../constants/action-types';
 
 
 const reducer = combineReducers(reducers);
@@ -13,6 +14,10 @@ const store = applyMiddleware(thunk)(createStore)(reducer);
 
 
 export default class App extends Component {
+  componentDidMount() {
+    store.dispatch({ type: BOOTSTRAP, payload: this.props.bootstrap })
+  }
+
   render() {
     return (
       <Provider store={store}>

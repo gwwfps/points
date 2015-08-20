@@ -46,15 +46,15 @@ const samples = [
   }
 ];
 
-const selectTournament = function(state, action) {
+const selectTournament = function(state, payload) {
   return {
     ...state,
-    selected: state.instances.find(tournament => tournament.id === action.id)
+    selected: state.instances.find(tournament => tournament.id === payload.id)
   };
 };
 
 const tournamentReducers = {
-  SELECT_TOURNAMENT: selectTournament
+  [SELECT_TOURNAMENT]: selectTournament
 };
 
 const selectedReducers = {
@@ -64,13 +64,13 @@ const selectedReducers = {
 export default function tournaments(state = { selected: samples[0], instances: samples }, action) {
   const tournamentReducer = tournamentReducers[action.type];
   if (tournamentReducer) {
-    return tournamentReducer(state, action);
+    return tournamentReducer(state, action.payload);
   }
 
   const selectedReducer = selectedReducers[action.type];
   if (selectedReducer) {
     const selectedIndex = state.instances.indexOf(state.selected);
-    const selected = selectedReducer(state.selected, action);
+    const selected = selectedReducer(state.selected, action.payload);
     return {
       ...state,
       instance: state.instances.slice(0, selectedIndex)

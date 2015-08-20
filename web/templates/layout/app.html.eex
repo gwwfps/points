@@ -20,7 +20,11 @@
     <%= @inner %>
 
   </div> <!-- /container -->
+  <script src="https://login.persona.org/include.js"></script>
   <script src="<%= static_path(@conn, "/bundle.js") %>"></script>
-  <script>window.StartPoints({});</script>
+  <script>
+    window.StartPoints({
+    });
+  </script>
 </body>
 </html>
