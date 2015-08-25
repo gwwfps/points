@@ -51,6 +51,7 @@ gulp.task('watch:js', buildJs(true));
 
 gulp.task('build:css', () => {
   return gulp.src(paths.src + '/styl/index.styl')
+    .pipe(plugins.plumber())
     .pipe(plugins.stylus())
     .pipe(gulp.dest(paths.dist));
 });

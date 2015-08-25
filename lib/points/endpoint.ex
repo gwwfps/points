@@ -8,8 +8,8 @@ defmodule Points.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :points, gzip: false,
-    only: ~w(fonts images bundle.js bundle.js.map index.css favicon.ico robots.txt)
+    at: "/", from: :points, gzip: true,
+    only: ~w(images bundle.js bundle.js.map index.css favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

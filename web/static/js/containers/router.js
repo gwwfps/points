@@ -23,7 +23,7 @@ export default class AppRouter extends Component {
       <Router history={this.props.history}>
         <Route path={routes.root} onEnter={::this.defaultRoute} />
         <Route path={`${routes.tournaments}(:tournamentId)(/:tabIndex)`} component={Tournaments} onEnter={::this.requiresAuth} />
-        <Route path={routes.login} component={Login} />
+        <Route path={routes.login} component={Login} onEnter={::this.redirectAuthenticated} />
         <Route path={routes.admin} component={Admin} onEnter={::this.requiresAdmin} />
       </Router>
     );
@@ -34,7 +34,7 @@ export default class AppRouter extends Component {
 
     let route;
     if (user.isAuthenticated) {
-      if (user.isAdmin) {
+      if (user.admin) {
         route = routes.admin;
       } else {
         route = routes.tournaments;
@@ -55,6 +55,12 @@ export default class AppRouter extends Component {
     const { user } = this.props;
     if (!user.isAuthenticated || !user.isAdmin) {
       transition.to(routes.login);
+    }
+  }
+
+  redirectAuthenticated(nextState, transition) {
+    if (this.props.user.isAuthenticated) {
+      transition.to(routes.root);
     }
   }
 }

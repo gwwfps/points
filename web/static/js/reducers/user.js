@@ -1,8 +1,12 @@
-import { BOOTSTRAP } from '../constants/action-types';
+import { BOOTSTRAP, USER_LOGIN } from '../constants/action-types';
 
 const reducers = {
   [BOOTSTRAP](state, payload) {
     return payload.user || state;
+  },
+
+  [USER_LOGIN](state, payload) {
+    return {...payload, isAuthenticated: true};
   }
 }
 

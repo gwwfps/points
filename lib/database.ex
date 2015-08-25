@@ -1,8 +1,8 @@
 use Amnesia
 
 defdatabase Database do
-  deftable User, [{ :id, autoincrement }, :name, :email, :bnet, :note], type: :ordered_set, index: [:email] do
-    @type t :: %User{id: non_neg_integer, email: String.t, name: String.t, bnet: String.t, note: String.t}
+  deftable User, [{ :id, autoincrement }, :name, :email, :bnet, :note, :picture, :admin], type: :ordered_set, index: [:email] do
+    @type t :: %User{id: non_neg_integer, email: String.t, name: String.t, bnet: String.t, note: String.t, picture: Stirng.t, admin: boolean}
   end
 
   deftable League, [{ :id, autoincrement }, :name, :stage, :featured], type: :ordered_set, index: [:featured] do

@@ -12,7 +12,6 @@ import { BOOTSTRAP } from '../constants/action-types';
 const reducer = combineReducers(reducers);
 const store = applyMiddleware(thunk)(createStore)(reducer);
 
-
 export default class App extends Component {
   componentDidMount() {
     store.dispatch({ type: BOOTSTRAP, payload: this.props.bootstrap })

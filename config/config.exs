@@ -9,7 +9,8 @@ use Mix.Config
 config :points, Points.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "28oI1KhueO+R5OcaO58w9sbDp2IvKCrFP+9gyuoHfg8wK2pGTg81nVLbVMUsZL6y",
+  secret_key_base: System.get_env("POINTS_SECRET_KEY"),
+  google_client_id: System.get_env("POINTS_GOOGLE_CLIENT_ID"),
   render_errors: [default_format: "html"],
   pubsub: [name: Points.PubSub,
            adapter: Phoenix.PubSub.PG2]
@@ -18,6 +19,15 @@ config :points, Points.Endpoint,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+config :joken, config_module: Guardian.JWT
+
+config :guardian, Guardian,
+  issuer: "Points",
+  ttl: { 30, :days },
+  verify_issuer: true,
+  secret_key: System.get_env("POINTS_JWT_SECRET"),
+  serializer: Points.GuardianSerializer
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

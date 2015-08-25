@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-signin-client_id" content="<%= Points.Endpoint.config(:google_client_id) %>">
   <title>Tournaments</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="<%= static_path(@conn, "/index.css") %>">
 </head>
@@ -20,9 +22,9 @@
     <%= @inner %>
 
   </div> <!-- /container -->
-  <script src="https://login.persona.org/include.js"></script>
-  <script src="<%= static_path(@conn, "/bundle.js") %>"></script>
-  <script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="<%= static_path(@conn, "/bundle.js") %>" async defer></script>
+  <script async defer>
     window.StartPoints({
     });
   </script>

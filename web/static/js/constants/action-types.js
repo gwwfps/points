@@ -1,3 +1,5 @@
 export const BOOTSTRAP = 'BOOTSTRAP';
 
 export const SELECT_TOURNAMENT = 'SELECT_TOURNAMENT';
+
+export const USER_LOGIN = 'USER_LOGIN';
