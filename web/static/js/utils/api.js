@@ -1,4 +1,7 @@
-var token;
+import { retrieveToken } from './auth-storage';
+
+
+var token = retrieveToken();
 
 const apiFetch = function(method, path, body) {
   const headers = {

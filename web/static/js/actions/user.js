@@ -1,5 +1,6 @@
 import { USER_LOGIN } from '../constants/action-types';
 import api from '../utils/api';
+import { saveInfo } from '../utils/auth-storage';
 
 
 export function verifyLogin(token) {
@@ -8,6 +9,7 @@ export function verifyLogin(token) {
       .then(response => response.json())
       .then(info => {
         api.setToken(info.token);
+        saveInfo(info);
         return info;
       })
       .then((info) => {
