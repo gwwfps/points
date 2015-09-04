@@ -28,7 +28,7 @@ export default class SigninButton extends Component {
 
   render() {
     return (
-      <div className="g-signin2" data-scope="email profile" data-longtitle="true" theme="dark" data-width="200"
+      <div className="g-signin2" data-scope="profile" data-longtitle="true" theme="dark" data-width="200"
         data-onsuccess={this.getCallbackName('onSuccess')}
         data-onfailure={this.getCallbackName('onFailure')}>
       </div>

@@ -1,13 +1,13 @@
 defmodule Mix.Tasks.Points.Install do
   use Mix.Task
-  use Database
+  use Points.Database
 
   def run(_) do
     Amnesia.Schema.create
     Amnesia.start
 
-    Database.create(disk: [node])
-    Database.wait
+    Points.Database.create(disk: [node])
+    Points.Database.wait
 
     Amnesia.transaction do
       # ... initial data creation
@@ -19,11 +19,11 @@ end
 
 defmodule Mix.Tasks.Points.Uninstall do
   use Mix.Task
-  use Database
+  use Points.Database
 
   def run(_) do
     Amnesia.start
-    Database.destroy
+    Points.Database.destroy
     Amnesia.stop
     Amnesia.Schema.destroy
   end

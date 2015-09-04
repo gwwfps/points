@@ -11,7 +11,7 @@ config :points, Points.Endpoint,
   root: Path.dirname(__DIR__),
   secret_key_base: System.get_env("POINTS_SECRET_KEY"),
   google_client_id: System.get_env("POINTS_GOOGLE_CLIENT_ID"),
-  render_errors: [default_format: "html"],
+  render_errors: [accepts: ["html"]],
   pubsub: [name: Points.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

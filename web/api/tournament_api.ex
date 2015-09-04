@@ -1,4 +1,4 @@
-defmodule Points.TournamentApiController do
+defmodule Points.Api.TournamentApi do
   use Points.Web, :controller
 
   def index(conn, _params) do

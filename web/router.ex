@@ -6,6 +6,7 @@ defmodule Points.Router do
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
+    plug :put_secure_browser_headers
   end
 
   pipeline :browser_session do
@@ -23,7 +24,7 @@ defmodule Points.Router do
     plug :accepts, ["json"]
     plug Guardian.Plug.VerifyAuthorization
     plug Guardian.Plug.LoadResource
-    plug Guardian.Plug.EnsureSession, on_failure: { SessionController, :unauthenticated_api }
+    plug Guardian.Plug.EnsureSession, on_failure: { Points.Api.AuthApi, :forbidden }
   end
 
   scope "/", Points do
@@ -32,15 +33,15 @@ defmodule Points.Router do
     get "/", PageController, :index
   end
 
-  scope "/api/v1/auth/", Points do
+  scope "/api/v1/auth/", Points.Api do
     pipe_through :api
 
-    post "/verify", AuthApiController, :verify
+    post "/verify", AuthApi, :verify
   end
 
-  scope "/api/v1/tournaments/", Points do
+  scope "/api/v1/tournament/", Points.Api do
     pipe_through :user_api
 
-    get "/", TournamentApiController, :index
+    get "/", TournamentApi, :index
   end
 end

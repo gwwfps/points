@@ -28,9 +28,9 @@ defmodule Points.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, "~> 0.15"},
-     {:phoenix_html, "~> 1.4"},
-     {:phoenix_live_reload, "~> 0.5", only: :dev},
+    [{:phoenix, "~> 1.0"},
+     {:phoenix_html, "~> 2.1"},
+     {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
      {:amnesia, github: "meh/amnesia", tag: :master},
      {:httpoison, "~> 0.7.2"},

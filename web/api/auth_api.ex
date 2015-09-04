@@ -1,4 +1,4 @@
-defmodule Points.AuthApiController do
+defmodule Points.Api.AuthApi do
   use Points.Web, :controller
 
   def verify(conn, %{"token" => token}) do
@@ -8,14 +8,7 @@ defmodule Points.AuthApiController do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         profile = Poison.Parser.parse! body
         if profile["aud"] == client_id do
-          email = profile["email"]
-          users = Points.UserModel.find_by_email(email)
-          user = nil
-          if length(users) > 0 do
-            user = hd(users)
-          else
-            user = Points.UserModel.create(email, profile["name"], profile["picture"])
-          end
+          user = Points.Stores.Users.update_or_create(profile)
           { :ok, jwt, full_claims } = Guardian.mint(user, :api)
           json conn, %{token: jwt, user: user }
         else
@@ -24,5 +17,11 @@ defmodule Points.AuthApiController do
       {:error, %HTTPoison.Error{reason: reason}} ->
         IO.inspect reason
     end
+  end
+
+  def forbidden(conn, _params) do
+    conn
+    |> put_status(403)
+    |> json %{message: "Forbidden"}
   end
 end
