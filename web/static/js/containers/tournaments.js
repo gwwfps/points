@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { IconButton } from 'material-ui';
 
 import * as Actions from '../actions';
 import MainToolbar from '../components/main-toolbar';
-import StageTabs from '../components/stage-tabs';
+import TournamentTabs from '../components/tournament-tabs';
 import SummaryCard from '../components/summary-card';
 
 
 @connect(state => ({
-  tournaments: state.tournaments
+  tournaments: state.tournaments,
+  user: state.user
 }))
 export default class Tournaments extends Component {
   render() {
@@ -20,9 +22,21 @@ export default class Tournaments extends Component {
 
     return (
       <div>
+        {this.renderAdminButton()}
         <div className="row"><MainToolbar tournaments={tournaments} tournament={tournament} actions={actions} /></div>
         <div className="row"><SummaryCard tournament={tournament} /></div>
-        <div className="row"><StageTabs tournament={tournament} selected={parseInt(this.props.params.tabIndex, 10)} /></div>
+        <div className="row"><TournamentTabs tournament={tournament} user={this.props.user} selected={parseInt(this.props.params.tabIndex, 10)} /></div>
+      </div>
+    );
+  }
+
+  renderAdminButton() {
+    if (!this.props.user.admin) {
+      return;
+    }
+    return (
+      <div className="u-pull-right">
+        <IconButton iconClassName="material-icons" tooltip="Admin Panel">dashboard</IconButton>
       </div>
     );
   }

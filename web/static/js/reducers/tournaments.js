@@ -2,12 +2,21 @@ import { SELECT_TOURNAMENT } from '../constants/action-types';
 
 const samples = [
   {
+    id: 241312,
+    name: 'Editing',
+    notes: 'Signup soon! Tons of prizes.',
+    rules: 'fdsfasfasfasfas',
+    start: 1439442451786,
+    phase: 0,
+    participants: Array.from(Array(20).keys()).map(i => ({ name: `Some guy ${i}`, id: i }))
+  },
+  {
     id: 625325423,
     name: 'Sample tournament',
     notes: 'Signup soon! Tons of prizes.',
     rules: 'fdsfasfasfasfas',
     start: 1439442451786,
-    phase: 0,
+    phase: 1,
     participants: Array.from(Array(20).keys()).map(i => ({ name: `Some guy ${i}`, id: i }))
   },
   {
@@ -16,7 +25,7 @@ const samples = [
     notes: 'League going on',
     rules: 'fdsfasfasfasfas',
     start: 1325635200000,
-    phase: 1,
+    phase: 2,
     participants: [
       { name: 'Some guy' }
     ]
@@ -27,7 +36,7 @@ const samples = [
     notes: 'EDIT: Playoffs happening!',
     rules: 'fdsfasfasfasfas',
     start: 1325635200000,
-    phase: 2,
+    phase: 3,
     participants: [
       { name: 'Some guy' }
     ]
@@ -39,7 +48,7 @@ const samples = [
     rules: 'fdsfasfasfasfas',
     start: 1325635200000,
     end: 1439442451786,
-    phase: 3,
+    phase: 4,
     participants: [
       { name: 'Some guy' }
     ]

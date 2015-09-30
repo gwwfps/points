@@ -17,7 +17,7 @@ defmodule Points.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {Points, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :amnesia, :httpoison, :poison, :guardian]]
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :rethinkdb, :httpoison, :poison, :guardian]]
   end
 
   # Specifies which paths to compile per environment
@@ -32,7 +32,7 @@ defmodule Points.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:amnesia, github: "meh/amnesia", tag: :master},
+     {:rethinkdb, github: "hamiltop/rethinkdb-elixir", tag: :master},
      {:httpoison, "~> 0.7.2"},
      {:poison, "~> 1.5"},
      {:guardian, "~> 0.5.0"}

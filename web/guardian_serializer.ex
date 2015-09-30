@@ -1,7 +1,7 @@
 defmodule Points.GuardianSerializer do
   @behaviour Guardian.Serializer
 
-  def for_token(user = %Points.Database.User{}), do: { :ok, "User:#{user.id}" }
+  def for_token(user = %{id: id}), do: { :ok, "User:#{user.id}" }
   def for_token(_), do: { :error, "Unknown resource type" }
 
   def from_token("User:" <> id) do

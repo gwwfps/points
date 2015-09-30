@@ -1,5 +1,6 @@
 %{"amnesia": {:git, "git://github.com/meh/amnesia.git", "0c2492bebfeca706978d26e4ee0bfe0fc409b086", [tag: :master]},
   "calendar": {:hex, :calendar, "0.9.0"},
+  "connection": {:hex, :connection, "1.0.1"},
   "cowboy": {:hex, :cowboy, "1.0.2"},
   "cowlib": {:hex, :cowlib, "1.0.1"},
   "earmark": {:hex, :earmark, "0.1.17"},
@@ -19,5 +20,6 @@
   "plug": {:hex, :plug, "1.0.0"},
   "poison": {:hex, :poison, "1.5.0"},
   "ranch": {:hex, :ranch, "1.1.0"},
+  "rethinkdb": {:git, "git://github.com/hamiltop/rethinkdb-elixir.git", "31dbb508d37227eea0bdfeddecb06501b4de9c70", [tag: :master]},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"},
   "tzdata": {:hex, :tzdata, "0.1.7"}}
