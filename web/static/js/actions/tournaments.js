@@ -6,3 +6,7 @@ export function selectTournament(id) {
     payload: { id }
   };
 }
+
+export function signup(id) {
+
+};

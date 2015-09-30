@@ -1,7 +1,7 @@
 import { Styles } from 'material-ui';
 
 const ThemeManager = new Styles.ThemeManager();
-ThemeManager.contentFontFamily = 'Alegreya Sans, sans-serif';
+ThemeManager.contentFontFamily = 'inherit';
 ThemeManager.setPalette({
   primary1Color: Styles.Colors.indigo500,
   primary2Color: Styles.Colors.indigo700,

@@ -53,7 +53,7 @@ export default class AppRouter extends Component {
 
   requiresAdmin(nextState, transition) {
     const { user } = this.props;
-    if (!user.isAuthenticated || !user.isAdmin) {
+    if (!user.isAuthenticated || !user.admin) {
       transition.to(routes.login);
     }
   }

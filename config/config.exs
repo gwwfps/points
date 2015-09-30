@@ -5,12 +5,19 @@
 # is restricted to this project.
 use Mix.Config
 
+config :points, Points.Repo,
+  adapter: Mongo.Ecto,
+  database: System.get_env("POINTS_DB_NAME"),
+  hostname: System.get_env("POINTS_DB_HOSTNAME")
+
 # Configures the endpoint
 config :points, Points.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
   secret_key_base: System.get_env("POINTS_SECRET_KEY"),
   google_client_id: System.get_env("POINTS_GOOGLE_CLIENT_ID"),
+  authorized_domain: System.get_env("POINTS_DOMAIN"),
+  first_admin: System.get_env("POINTS_FIRST_ADMIN"),
   render_errors: [accepts: ["html"]],
   pubsub: [name: Points.PubSub,
            adapter: Phoenix.PubSub.PG2]

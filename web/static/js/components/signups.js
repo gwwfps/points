@@ -6,12 +6,10 @@ import ParticipantList from './participant-list';
 
 export default class Signups extends Component {
   render() {
-    const isActive = this.isActivePhase();
-
     return (
       <div className="panel">
         <div className="u-pull-right">
-          <RaisedButton label="Sign up" primary={true} disabled={!isActive} onClick={::this.onClickSignup} />
+          <RaisedButton label="Sign up" primary={true} onClick={::this.showConfirm} />
         </div>
         <h4>{this.props.tournament.participants.length} people signed up so far.</h4>
         <ParticipantList participants={this.props.tournament.participants} />
@@ -24,18 +22,18 @@ export default class Signups extends Component {
     );
   }
 
-  isActivePhase() {
-    return this.props.tournament.phase === 0;
+  showConfirm() {
+    this.refs.dialog.show();
   }
 
-  onClickSignup() {
-    this.refs.dialog.show();
+  confirmSignup() {
+
   }
 
   renderDialogActions() {
     return ([
-      <FlatButton label="Nope" key="cancel" secondary={true} />,
-      <FlatButton label="Do it" key="submit" primary={true} />
+      { text: 'Nope' },
+      <FlatButton label="Do it" key="submit" primary={true} onTouchTap={::this.confirmSignup} />
     ]);
   }
 }
