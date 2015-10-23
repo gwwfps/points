@@ -1,5 +1,5 @@
 defmodule Points.Database do
-  use RethinkDB.Connection
+  # use RethinkDB.Connection
 end
 
 # defdatabase Points.Database do

@@ -5,6 +5,11 @@
 # is restricted to this project.
 use Mix.Config
 
+config :points, Points.Repo,
+  adapter: Mongo.Ecto,
+  database: System.get_env("POINTS_DB_NAME"),
+  hostname: System.get_env("POINTS_DB_HOSTNAME")
+
 # Configures the endpoint
 config :points, Points.Endpoint,
   url: [host: "localhost"],
