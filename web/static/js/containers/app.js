@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
 
 import * as reducers from '../reducers';
-import ThemeManager from '../utils/theme-manager';
+import Theme from '../utils/theme';
 import AppRouter from './router';
 import { BOOTSTRAP } from '../constants/action-types';
 
@@ -20,7 +21,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {() => <AppRouter history={this.props.history} />}
+        <AppRouter history={this.props.history} />
       </Provider>
     );
   }
@@ -29,7 +30,7 @@ export default class App extends Component {
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme()
+      muiTheme: ThemeManager.getMuiTheme(Theme)
     };
   }
 }

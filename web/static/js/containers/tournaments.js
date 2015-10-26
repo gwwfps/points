@@ -7,6 +7,7 @@ import * as Actions from '../actions';
 import MainToolbar from '../components/main-toolbar';
 import TournamentTabs from '../components/tournament-tabs';
 import SummaryCard from '../components/summary-card';
+import ModeButton from '../components/mode-button';
 
 
 @connect(state => ({
@@ -35,9 +36,7 @@ export default class Tournaments extends Component {
       return;
     }
     return (
-      <div className="u-pull-right">
-        <IconButton iconClassName="material-icons" tooltip="Admin Panel">dashboard</IconButton>
-      </div>
+      <ModeButton route="/admin" tooltip="Admin Panel" icon="dashboard" />
     );
   }
 

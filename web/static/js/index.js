@@ -1,18 +1,16 @@
 import 'babel-core/polyfill';
 import React from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
-import HashHistory from 'react-router/lib/HashHistory';
+import { createHashHistory } from 'history';
 
 import App from './containers/app';
 
 
-injectTapEventPlugin();
-
-const history = new HashHistory();
+const history = createHashHistory();
 
 window.StartPoints = (data) => {
-  React.render(
+  ReactDOM.render(
     <App history={history} bootstrap={data} />,
     document.getElementById('main')
   );

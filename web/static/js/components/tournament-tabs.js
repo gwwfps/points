@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Tabs, Tab, Paper } from 'material-ui';
+import { History } from 'react-router';
+import reactMixin from 'react-mixin';
 
 import Standings from './standings';
 import { COMPLETED, PREPARATION, SIGNUPS } from '../constants/tournament-phases';
 
-
+@reactMixin.decorate(History)
 export default class TournamentTabs extends Component {
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  };
-
   render() {
     const selectedIndex = isNaN(this.props.selected) ? this.props.tournament.phase : this.props.selected;
 
@@ -54,7 +52,7 @@ export default class TournamentTabs extends Component {
   }
 
   onChange(index) {
-    this.context.router.transitionTo(`/t/${this.props.tournament.id}/${index}`);
+    this.history.pushState(null, `/t/${this.props.tournament.id}/${index}`);
   }
 }
 
