@@ -24,7 +24,7 @@ export default class Tournaments extends Component {
     return (
       <div>
         {this.renderAdminButton()}
-        <div className="row"><MainToolbar tournaments={tournaments} tournament={tournament} actions={actions} /></div>
+        <div className="row"><MainToolbar tournaments={tournaments.instances} tournament={tournament} actions={actions} /></div>
         <div className="row"><SummaryCard tournament={tournament} /></div>
         <div className="row"><TournamentTabs tournament={tournament} user={this.props.user} selected={parseInt(this.props.params.tabIndex, 10)} /></div>
       </div>
