@@ -22,15 +22,15 @@ export default class TournamentTabs extends Component {
 
   renderTabs() {
     return [
-      this.renderStandings(),
       this.renderIntake(),
+      this.renderStandings(),
       this.renderAdmin()
     ].filter(tab => !!tab);
   }
 
   renderStandings() {
     return (
-      <Tab label="Standings" key="standings">
+      <Tab label="Standings" value="standings" key="standings">
         <Standings tournament={this.props.tournament} />
       </Tab>
     );
@@ -41,7 +41,7 @@ export default class TournamentTabs extends Component {
       return;
     }
     return (
-      <Tab label="Standings" key="standings">
+      <Tab label="Signups" value="signups" key="signups">
         <Standings tournament={this.props.tournament} />
       </Tab>
     );
@@ -51,8 +51,8 @@ export default class TournamentTabs extends Component {
 
   }
 
-  onChange(index) {
-    this.history.pushState(null, `/t/${this.props.tournament.id}/${index}`);
+  onChange(value) {
+    this.history.pushState(null, `/t/${this.props.tournament.id}/${value}`);
   }
 }
 
