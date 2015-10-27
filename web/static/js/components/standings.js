@@ -6,21 +6,19 @@ import Season from './season';
 import Playoffs from './playoffs';
 
 
-export default class Standings extends Component {
-  render() {
-    switch (this.props.tournament.phase) {
-      case PREPARATION:
-        return (
-          <div className="panel">This tournament is not publicly visible yet, publish it after everything's set-up.</div>
-        );
-      case SIGNUPS:
-        return (
-          <Signups tournament={this.props.tournament} />
-        );
-      default:
-        return (
-          <Signups tournament={this.props.tournament} />
-        );
-    }
+export default function Standings(props) {
+  switch (props.tournament.phase) {
+    case PREPARATION:
+      return (
+        <div className="panel">This tournament is not publicly visible yet, publish it after everything's set-up.</div>
+      );
+    case SIGNUPS:
+      return (
+        <Signups tournament={props.tournament} />
+      );
+    default:
+      return (
+        <Signups tournament={props.tournament} />
+      );
   }
 }

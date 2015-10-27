@@ -8,7 +8,6 @@
     "moment": "^2.10.6",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-mixin": "^3.0.0",
     "react-pure-render": "^1.0.2",
     "react-redux": "^4.0.0",
     "react-router": "^1.0.0-rc3",

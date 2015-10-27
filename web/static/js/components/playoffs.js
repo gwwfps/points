@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-export default class Playoffs extends Component {
-  render() {
-    return (
-      <div>playoffs</div>
-    );
-  }
+export default function Playoffs() {
+  return (
+    <div>playoffs</div>
+  );
 }
