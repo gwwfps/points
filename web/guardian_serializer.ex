@@ -7,7 +7,7 @@ defmodule Points.GuardianSerializer do
   def for_token(_), do: { :error, "Unknown resource type" }
 
   def from_token("User:" <> id) do
-    { :ok, Repo.get!(User, String.to_integer(id)) }
+    { :ok, Repo.get!(User, id) }
   end
 
   def from_token(_), do: { :error, "Unknown resource type" }

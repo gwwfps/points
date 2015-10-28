@@ -2,6 +2,7 @@ defmodule Points.User do
   use Points.Web, :model
   alias Points.Repo
   use Ecto.Model
+  import Ecto.Query, only: [from: 2]
 
   @derive {Poison.Encoder, only: [:name, :email, :bnet, :admin, :note, :picture, :rating]}
 
@@ -44,5 +45,11 @@ defmodule Points.User do
       nil -> Repo.insert! %Points.User{email: email}
       user -> user
     end
+  end
+
+  def get_all() do
+    query = from p in __MODULE__,
+      select: p
+    Repo.all(query)
   end
 end

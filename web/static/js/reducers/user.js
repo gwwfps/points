@@ -1,5 +1,6 @@
 import { BOOTSTRAP, USER_LOGIN } from '../constants/action-types';
 import { retrieveUser } from '../utils/auth-storage';
+import singleActionsReducer from '../utils/single-actions-reducer';
 
 const reducers = {
   [BOOTSTRAP](state, payload) {
@@ -14,10 +15,6 @@ const reducers = {
 const storedUser = retrieveUser();
 const defaultUser = { ...(storedUser || {}), isAuthenticated: !!storedUser };
 
-export default function user(state = defaultUser, action) {
-  const reducer = reducers[action.type];
-  if (reducer) {
-    return reducer(state, action.payload);
-  }
-  return state;
-}
+const reducer = singleActionsReducer(defaultUser, reducers);
+
+export default reducer;

@@ -6,7 +6,6 @@ import { saveInfo } from '../utils/auth-storage';
 export function verifyLogin(token) {
   return dispatch => {
     api.post('auth/verify', { token })
-      .then(response => response.json())
       .then(info => {
         api.setToken(info.token);
         saveInfo(info);

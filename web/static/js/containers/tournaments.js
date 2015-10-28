@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { IconButton } from 'material-ui';
 
-import * as Actions from '../actions';
+import * as TournamentsActions from '../actions/tournaments';
 import MainToolbar from '../components/main-toolbar';
 import TournamentTabs from '../components/tournament-tabs';
 import SummaryCard from '../components/summary-card';
@@ -17,7 +17,7 @@ import ModeButton from '../components/mode-button';
 export default class Tournaments extends Component {
   render() {
     const { tournaments, dispatch } = this.props;
-    const actions = bindActionCreators(Actions, dispatch);
+    const actions = bindActionCreators(TournamentsActions, dispatch);
 
     const tournament = this.findSelectedTournament(tournaments);
 

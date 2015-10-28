@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { List, ListItem, FontIcon } from 'material-ui';
+import { List, ListItem } from 'material-ui';
 
 import { PREPARATION } from '../../constants/tournament-phases';
 import formatPhase from '../../formatters/phase';
+import MaterialIcon from '../material-icon';
 
 
 const renderIcon = function(tournament) {
   const visible = tournament.phase !== PREPARATION;
   const iconName = 'visibility' + (visible || '_off');
-  return (<FontIcon className="material-icons">{iconName}</FontIcon>);
+  return MaterialIcon(iconName);
 };
 
 const renderItem = function(tournament) {

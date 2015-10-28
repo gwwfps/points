@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
-import { List, ListItem } from 'material-ui';
+import { List, ListItem, Avatar } from 'material-ui';
 
-export default function UserList() {
+import MaterialIcon from '../material-icon';
+
+
+const renderUser = function(user) {
+  const avatar = <Avatar src={user.picture} />;
+
+  return (
+    <ListItem
+      primaryText={user.name}
+      key={user.email}
+      secondaryText={user.email}
+      leftAvatar={avatar}
+      rightIcon={user.admin && MaterialIcon('verified_user')} />
+  );
+};
+
+export default function UserList(props) {
+  const listItems = props.users.map(renderUser);
   return (
     <List>
-      <ListItem primaryText="All mail" />
-      <ListItem primaryText="Trash" />
-      <ListItem primaryText="Spam" />
-      <ListItem primaryText="Follow up" />
+      {listItems}
     </List>
   );
 }

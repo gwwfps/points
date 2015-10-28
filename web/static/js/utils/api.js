@@ -16,8 +16,8 @@ const apiFetch = function(method, path, body) {
   return fetch('/api/v1/' + path, {
     method,
     headers: headers,
-    body: JSON.stringify(body || {})
-  });
+    body: method === 'get' ? null : JSON.stringify(body || {})
+  }).then(response => response.json());
 };
 
 const exports = {

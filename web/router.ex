@@ -39,9 +39,9 @@ defmodule Points.Router do
     post "/verify", AuthApi, :verify
   end
 
-  scope "/api/v1/tournament/", Points.Api do
+  scope "/api/v1/users/", Points.Api do
     pipe_through :user_api
 
-    get "/", TournamentApi, :index
+    get "/", UserApi, :index
   end
 end

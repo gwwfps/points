@@ -3,14 +3,14 @@ import { Paper, RaisedButton } from 'material-ui';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as UserActions from '../actions/user';
+import * as AuthActions from '../actions/auth';
 import SigninButton from '../components/signin-button';
 
 
 @connect(state => ({}))
 export default class Login extends Component {
   render() {
-    const actions = bindActionCreators(UserActions, this.props.dispatch);
+    const actions = bindActionCreators(AuthActions, this.props.dispatch);
 
     return (
       <div className='login'>
