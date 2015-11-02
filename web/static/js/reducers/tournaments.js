@@ -1,59 +1,4 @@
-import { SELECT_TOURNAMENT } from '../constants/action-types';
-
-const samples = [
-  {
-    id: 241312,
-    name: 'Editing',
-    notes: 'Signup soon! Tons of prizes.',
-    rules: 'fdsfasfasfasfas',
-    start: 1439442451786,
-    phase: 0,
-    participants: Array.from(Array(20).keys()).map(i => ({ name: `Some guy ${i}`, id: i }))
-  },
-  {
-    id: 625325423,
-    name: 'Sample tournament',
-    notes: 'Signup soon! Tons of prizes.',
-    rules: 'fdsfasfasfasfas',
-    start: 1439442451786,
-    phase: 1,
-    participants: Array.from(Array(20).keys()).map(i => ({ name: `Some guy ${i}`, id: i }))
-  },
-  {
-    id: 2312451,
-    name: 'In progress tournament',
-    notes: 'League going on',
-    rules: 'fdsfasfasfasfas',
-    start: 1325635200000,
-    phase: 2,
-    participants: [
-      { name: 'Some guy' }
-    ]
-  },
-  {
-    id: 5215141234,
-    name: 'Playoffs tournament',
-    notes: 'EDIT: Playoffs happening!',
-    rules: 'fdsfasfasfasfas',
-    start: 1325635200000,
-    phase: 3,
-    participants: [
-      { name: 'Some guy' }
-    ]
-  },
-  {
-    id: 521514123432,
-    name: 'Playoffs tournament 2',
-    notes: 'Oldest tournament',
-    rules: 'fdsfasfasfasfas',
-    start: 1325635200000,
-    end: 1439442451786,
-    phase: 4,
-    participants: [
-      { name: 'Some guy' }
-    ]
-  }
-];
+import { SELECT_TOURNAMENT, UPDATE_TOURNAMENTS } from '../constants/action-types';
 
 const selectTournament = function(state, payload) {
   return {
@@ -62,15 +7,23 @@ const selectTournament = function(state, payload) {
   };
 };
 
+const updateTournaments = function(state, payload) {
+  return {
+    instances: payload,
+    selected: payload.find(t => t.id === state.selected.id) || payload[0]
+  }
+};
+
 const tournamentReducers = {
-  [SELECT_TOURNAMENT]: selectTournament
+  [SELECT_TOURNAMENT]: selectTournament,
+  [UPDATE_TOURNAMENTS]: updateTournaments
 };
 
 const selectedReducers = {
 
 };
 
-export default function tournaments(state = { selected: samples[0], instances: samples }, action) {
+export default function tournaments(state = { selected: void 0, instances: [] }, action) {
   const tournamentReducer = tournamentReducers[action.type];
   if (tournamentReducer) {
     return tournamentReducer(state, action.payload);

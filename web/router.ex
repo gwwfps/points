@@ -42,6 +42,12 @@ defmodule Points.Router do
   scope "/api/v1/users/", Points.Api do
     pipe_through :user_api
 
-    get "/", UserApi, :index
+    resources "/", UserApi
+  end
+
+  scope "/api/v1/tournaments/", Points.Api do
+    pipe_through :user_api
+
+    resources "/", TournamentApi
   end
 end

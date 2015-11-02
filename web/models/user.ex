@@ -4,7 +4,7 @@ defmodule Points.User do
   use Ecto.Model
   import Ecto.Query, only: [from: 2]
 
-  @derive {Poison.Encoder, only: [:name, :email, :bnet, :admin, :note, :picture, :rating]}
+  @derive {Poison.Encoder, only: [:id, :name, :email, :bnet, :admin, :note, :picture, :rating]}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "users" do
@@ -31,7 +31,6 @@ defmodule Points.User do
 
   def update_or_create!(params) do
     picked = %{
-      email: params["email"],
       name: params["name"],
       picture: params["picture"]
     }

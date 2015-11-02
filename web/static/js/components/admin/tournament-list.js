@@ -19,12 +19,16 @@ const renderItem = function(tournament) {
   );
 };
 
+const placeholderItem = (
+  <ListItem primaryText="No tournament found." />
+);
+
 export default function TournamentList(props) {
   const listItems = props.tournaments.map(renderItem);
 
   return (
     <List>
-      {listItems}
+      {listItems.length ? listItems : placeholderItem}
     </List>
   );
 }

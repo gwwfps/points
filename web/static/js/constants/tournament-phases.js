@@ -1,5 +1,11 @@
-export const PREPARATION = 0;
-export const SIGNUPS = 1;
-export const REGULAR_SEASON = 2;
-export const PLAYOFFS = 3;
-export const COMPLETED = 4;
+export const SIGNUPS = 0;
+export const GROUP_STAGE = 1;
+export const PLAYOFFS = 2;
+export const COMPLETED = 3;
+
+export const LABELS = {
+  [SIGNUPS]: 'Signups',
+  [GROUP_STAGE]: 'Group Stage',
+  [PLAYOFFS]: 'Playoffs',
+  [COMPLETED]: 'Completed'
+};

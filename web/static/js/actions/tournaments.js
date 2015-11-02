@@ -1,4 +1,5 @@
-import { SELECT_TOURNAMENT } from '../constants/action-types';
+import { SELECT_TOURNAMENT, UPDATE_TOURNAMENTS } from '../constants/action-types';
+import api from '../utils/api';
 
 export function selectTournament(id) {
   return {
@@ -7,6 +8,14 @@ export function selectTournament(id) {
   };
 }
 
-export function signup(id) {
-
+export function getTournaments() {
+  return dispatch => {
+    api.get('tournaments')
+      .then(tournaments => {
+        dispatch({
+          type: UPDATE_TOURNAMENTS,
+          payload: tournaments
+        });
+      });
+  };
 };

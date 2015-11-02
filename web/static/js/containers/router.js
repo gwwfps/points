@@ -3,6 +3,7 @@ import { Redirect, Router, Route } from 'react-router';
 import { connect } from 'react-redux';
 
 import Admin from './admin';
+import EditTournament from './edit-tournament';
 import Login from './login';
 import Tournaments from './tournaments';
 
@@ -25,11 +26,12 @@ export default class AppRouter extends Component {
         <Route path={`${routes.tournaments}(:tournamentId)(/:tabIndex)`} component={Tournaments} onEnter={::this.requiresAuth} />
         <Route path={routes.login} component={Login} onEnter={::this.redirectAuthenticated} />
         <Route path={routes.admin} component={Admin} onEnter={::this.requiresAdmin} />
+        <Route path={`${routes.admin}/tournament/(:tournamentId)`} component={EditTournament} onEnter={::this.requiresAdmin} />
       </Router>
     );
   }
 
-  defaultRoute(nextState, transition) {
+  defaultRoute(nextState, replaceState) {
     const { user } = this.props;
 
     let route;
@@ -42,25 +44,25 @@ export default class AppRouter extends Component {
     } else {
       route = routes.login;
     }
-    transition.to(route);
+    replaceState(null, route);
   }
 
-  requiresAuth(nextState, transition) {
+  requiresAuth(nextState, replaceState) {
     if (!this.props.user.isAuthenticated) {
-      transition.to(routes.login);
+      replaceState(null, routes.login);
     }
   }
 
-  requiresAdmin(nextState, transition) {
+  requiresAdmin(nextState, replaceState) {
     const { user } = this.props;
     if (!user.isAuthenticated || !user.admin) {
-      transition.to(routes.login);
+      replaceState(null, routes.login);
     }
   }
 
-  redirectAuthenticated(nextState, transition) {
+  redirectAuthenticated(nextState, replaceState) {
     if (this.props.user.isAuthenticated) {
-      transition.to(routes.root);
+      replaceState(null, routes.root);
     }
   }
 }
