@@ -12,19 +12,15 @@ const renderIcon = function(tournament) {
   return MaterialIcon(iconName);
 };
 
-const renderItem = function(tournament) {
-  return (
-    <ListItem primaryText={tournament.name} key={tournament.id}
-      secondaryText={formatPhase(tournament)} rightIcon={renderIcon(tournament)} />
-  );
-};
-
 const placeholderItem = (
   <ListItem primaryText="No tournament found." />
 );
 
 export default function TournamentList(props) {
-  const listItems = props.tournaments.map(renderItem);
+  const listItems = props.tournaments.map(tournament => (
+    <ListItem primaryText={tournament.name} key={tournament.id}
+      secondaryText={formatPhase(tournament)} rightIcon={renderIcon(tournament)} onClick={props.doEdit.bind(null, tournament.id)} />
+  ));
 
   return (
     <List>

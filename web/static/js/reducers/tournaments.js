@@ -8,9 +8,19 @@ const selectTournament = function(state, payload) {
 };
 
 const updateTournaments = function(state, payload) {
+  var selected;
+
+  if (state.selected) {
+    selected = payload.find(t => t.id === state.selected.id);
+  }
+
+  if (!selected && payload.length) {
+    selected = payload[0];
+  }
+
   return {
     instances: payload,
-    selected: payload.find(t => t.id === state.selected.id) || payload[0]
+    selected
   }
 };
 

@@ -8,4 +8,9 @@ defmodule Points.TournamentStore do
       select: p
     Repo.all(query)
   end
+
+  def create(entity) do
+    cs = Tournament.changeset(%Tournament{}, entity)
+    Repo.insert! cs
+  end
 end

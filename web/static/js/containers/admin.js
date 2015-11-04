@@ -8,7 +8,7 @@ import TournamentList from '../components/admin/tournament-list';
 import UserList from '../components/admin/user-list';
 import AddButton from '../components/admin/add-button';
 import { getUsers } from '../actions/users';
-import { getTournaments } from '../actions/tournaments';
+import { getTournaments, editTournament } from '../actions/tournaments';
 
 @connect(state => ({
   tournaments: state.tournaments,
@@ -22,6 +22,8 @@ export default class Admin extends Component {
   }
 
   render() {
+    const { editTournament: boundEditTournament } = bindActionCreators({ editTournament }, this.props.dispatch);
+
     return (
       <div>
         <div className="row">
@@ -31,7 +33,7 @@ export default class Admin extends Component {
           <AddButton route="/admin/tournament/new" />
           <h4>Tournaments</h4>
           <Paper zDepth={1}>
-            <TournamentList tournaments={this.props.tournaments.instances} />
+            <TournamentList tournaments={this.props.tournaments.instances} doEdit={boundEditTournament} />
           </Paper>
         </div>
         <div className="row">
