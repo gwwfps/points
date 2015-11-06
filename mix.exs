@@ -38,11 +38,11 @@ defmodule Points.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, "~> 1.0"},
-     {:phoenix_html, "~> 2.2"},
+    [{:phoenix, "~> 1.0.3"},
+     {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:phoenix_ecto, "~> 1.2"},
+     {:phoenix_ecto, "~> 1.1"},
      {:mongodb_ecto, "~> 0.1"},
      {:httpoison, "~> 0.7.2"},
      {:poison, "~> 1.5"},
