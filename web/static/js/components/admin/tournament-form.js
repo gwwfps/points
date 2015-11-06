@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TextField, DatePicker, SelectField, Toggle } from 'material-ui';
 import LinkStateMixin from 'react-addons-linked-state-mixin';
 import ReactMixin from 'react-mixin';
+import moment from 'moment';
 
 import { LABELS } from '../../constants/tournament-phases';
 import MaterialIcon from '../material-icon';
@@ -20,9 +21,11 @@ const visibleOptions = [
 export default class TournamentForm extends Component {
   state = { errors: {} };
 
-  componentWillMount() {
-    if (this.props.tournament) {
-      this.setState(this.props.tournament);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.tournament) {
+      const tournament = {...nextProps.tournament};
+      tournament.start_date = moment(tournament.start_date).toDate();
+      this.setState(tournament);
     }
   }
 
@@ -70,7 +73,7 @@ export default class TournamentForm extends Component {
       return;
     }
 
-    data.start_date = data.start_date.getTime();
+    data.start_date = moment(data.start_date).valueOf();
 
     return data;
   }

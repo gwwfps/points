@@ -1,8 +1,9 @@
 import history from '../history';
-import { TOURNAMENT_CREATED, EDIT_TOURNAMENT } from '../constants/action-types';
+import { TOURNAMENT_CREATED, EDIT_TOURNAMENT, TOURNAMENT_SAVED } from '../constants/action-types';
 
 const mappings = {
   [TOURNAMENT_CREATED]: '/admin',
+  [TOURNAMENT_SAVED]: '/admin',
   [EDIT_TOURNAMENT]: id => `/admin/tournament/${id}`
 };
 

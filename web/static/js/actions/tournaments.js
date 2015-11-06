@@ -1,4 +1,4 @@
-import { SELECT_TOURNAMENT, UPDATE_TOURNAMENTS, TOURNAMENT_CREATED, EDIT_TOURNAMENT } from '../constants/action-types';
+import { SELECT_TOURNAMENT, UPDATE_TOURNAMENTS, TOURNAMENT_CREATED, TOURNAMENT_SAVED, EDIT_TOURNAMENT } from '../constants/action-types';
 import api from '../utils/api';
 
 export function selectTournament(id) {
@@ -35,5 +35,16 @@ export function editTournament(id) {
   return {
     type: EDIT_TOURNAMENT,
     payload: id
+  };
+}
+
+export function saveTournament(tournament) {
+  return dispatch => {
+    api.put(`tournaments/${tournament.id}`, tournament)
+      .then(() => {
+        dispatch({
+          type: TOURNAMENT_SAVED
+        });
+      });
   };
 }

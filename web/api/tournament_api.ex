@@ -9,4 +9,8 @@ defmodule Points.Api.TournamentApi do
   def create(conn, entity) do
     json conn, TournamentStore.create(entity)
   end
+
+  def update(conn, entity = %{"id" => id}) do
+    json conn, TournamentStore.update(id, entity)
+  end
 end

@@ -13,4 +13,10 @@ defmodule Points.TournamentStore do
     cs = Tournament.changeset(%Tournament{}, entity)
     Repo.insert! cs
   end
+
+  def update(id, entity) do
+    tournament = Repo.get!(Tournament, id)
+    cs = Tournament.changeset(tournament, entity)
+    Repo.update! cs
+  end
 end
