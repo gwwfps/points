@@ -21,9 +21,17 @@ const visibleOptions = [
 export default class TournamentForm extends Component {
   state = { errors: {} };
 
+  componentWillMount() {
+    this.updateStateTournament(this.props);
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (nextProps.tournament) {
-      const tournament = {...nextProps.tournament};
+    this.updateStateTournament(nextProps);
+  }
+
+  updateStateTournament(props) {
+    if (props.tournament) {
+      const tournament = {...props.tournament};
       tournament.start_date = moment(tournament.start_date).toDate();
       this.setState(tournament);
     }
