@@ -7,8 +7,7 @@ import MaterialIcon from '../material-icon';
 
 
 const renderIcon = function(tournament) {
-  const visible = tournament.phase !== PREPARATION;
-  const iconName = 'visibility' + (visible || '_off');
+  const iconName = 'visibility' + (tournament.visible || '_off');
   return MaterialIcon(iconName);
 };
 
