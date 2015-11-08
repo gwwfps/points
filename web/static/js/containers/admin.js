@@ -7,7 +7,7 @@ import ModeButton from '../components/mode-button';
 import TournamentList from '../components/admin/tournament-list';
 import UserList from '../components/admin/user-list';
 import AddButton from '../components/admin/add-button';
-import { getUsers } from '../actions/users';
+import { getUsers, editUser } from '../actions/users';
 import { getTournaments, editTournament } from '../actions/tournaments';
 
 @connect(state => ({
@@ -22,7 +22,7 @@ export default class Admin extends Component {
   }
 
   render() {
-    const { editTournament: boundEditTournament } = bindActionCreators({ editTournament }, this.props.dispatch);
+    const actions = bindActionCreators({ editTournament, editUser }, this.props.dispatch);
 
     return (
       <div>
@@ -33,14 +33,14 @@ export default class Admin extends Component {
           <AddButton route="/admin/tournament/new" />
           <h4>Tournaments</h4>
           <Paper zDepth={1}>
-            <TournamentList tournaments={this.props.tournaments.instances} doEdit={boundEditTournament} />
+            <TournamentList tournaments={this.props.tournaments.instances} doEdit={actions.editTournament} />
           </Paper>
         </div>
         <div className="row">
           <AddButton route="/admin/user/new" />
           <h4>Users</h4>
           <Paper zDepth={1}>
-            <UserList users={this.props.users} />
+            <UserList users={this.props.users} doEdit={actions.editUser} />
           </Paper>
         </div>
       </div>

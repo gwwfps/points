@@ -12,4 +12,9 @@ export const TOURNAMENT_SAVED = 'TOURNAMENT_SAVED';
 export const USER_LOGIN = 'USER_LOGIN';
 
 export const UPDATE_USERS = 'UPDATE_USERS';
-export const UPDATE_USER = 'UPDATE_USER';
+export const EDIT_USER = 'EDIT_USER';
+
+export const USER_CREATED = 'USER_CREATED';
+export const USER_SAVED = 'USER_SAVED';
+
+export const CANCEL_EDIT = 'CANCEL_EDIT';

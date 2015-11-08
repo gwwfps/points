@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextField, DatePicker, SelectField, Toggle } from 'material-ui';
+import { TextField, DatePicker, SelectField } from 'material-ui';
 import LinkStateMixin from 'react-addons-linked-state-mixin';
 import ReactMixin from 'react-mixin';
 import moment from 'moment';
@@ -61,7 +61,6 @@ export default class TournamentForm extends Component {
       </div>
     );
   }
-
 
   getData() {
     const data = {...this.state};

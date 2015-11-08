@@ -4,16 +4,11 @@ import { connect } from 'react-redux';
 
 import Admin from './admin';
 import EditTournament from './edit-tournament';
+import EditUser from './edit-user';
 import Login from './login';
 import Tournaments from './tournaments';
+import routes from '../constants/routes';
 
-
-const routes = {
-  root: '/',
-  tournaments: '/t/',
-  login: '/login',
-  admin: '/admin'
-};
 
 @connect(state => ({
   user: state.user
@@ -27,6 +22,7 @@ export default class AppRouter extends Component {
         <Route path={routes.login} component={Login} onEnter={::this.redirectAuthenticated} />
         <Route path={routes.admin} component={Admin} onEnter={::this.requiresAdmin} />
         <Route path={`${routes.admin}/tournament/(:tournamentId)`} component={EditTournament} onEnter={::this.requiresAdmin} />
+        <Route path={`${routes.admin}/user/(:userId)`} component={EditUser} onEnter={::this.requiresAdmin} />
       </Router>
     );
   }

@@ -18,7 +18,7 @@ const placeholderItem = (
 export default function TournamentList(props) {
   const listItems = props.tournaments.map(tournament => (
     <ListItem primaryText={tournament.name} key={tournament.id}
-      secondaryText={formatPhase(tournament)} rightIcon={renderIcon(tournament)} onClick={props.doEdit.bind(null, tournament.id)} />
+      secondaryText={formatPhase(tournament)} rightIcon={renderIcon(tournament)} onClick={() => props.doEdit(tournament)} />
   ));
 
   return (

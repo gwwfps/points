@@ -1,10 +1,21 @@
 import history from '../history';
-import { TOURNAMENT_CREATED, EDIT_TOURNAMENT, TOURNAMENT_SAVED } from '../constants/action-types';
+import routes from '../constants/routes';
+import {
+  EDIT_TOURNAMENT, TOURNAMENT_CREATED, TOURNAMENT_SAVED,
+  EDIT_USER, USER_CREATED, USER_SAVED,
+  CANCEL_EDIT
+} from '../constants/action-types';
 
 const mappings = {
-  [TOURNAMENT_CREATED]: '/admin',
-  [TOURNAMENT_SAVED]: '/admin',
-  [EDIT_TOURNAMENT]: id => `/admin/tournament/${id}`
+  [EDIT_TOURNAMENT]: tournament => `${routes.admin}/tournament/${tournament.id}`,
+  [TOURNAMENT_CREATED]: `${routes.admin}`,
+  [TOURNAMENT_SAVED]: `${routes.admin}`,
+
+  [EDIT_USER]: user => `${routes.admin}/user/${user.id}`,
+  [USER_CREATED]: `${routes.admin}`,
+  [USER_SAVED]: `${routes.admin}`,
+
+  [CANCEL_EDIT]: `${routes.admin}`
 };
 
 export default function impureRouting(state = {}, action) {

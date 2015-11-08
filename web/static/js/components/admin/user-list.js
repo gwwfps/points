@@ -2,24 +2,18 @@ import React, { Component } from 'react';
 import { List, ListItem, Avatar } from 'material-ui';
 
 import MaterialIcon from '../material-icon';
-import history from '../../history';
 
-const renderUser = function(user) {
-  const avatar = <Avatar src={user.picture} />;
 
-  return (
+export default function UserList(props) {
+  const listItems = props.users.map(user => (
     <ListItem
       primaryText={user.name}
       key={user.email}
       secondaryText={user.email}
-      leftAvatar={avatar}
+      leftAvatar={<Avatar src={user.picture} />}
       rightIcon={user.admin && MaterialIcon('verified_user')}
-      onClick={() => history.pushState(null, `/admin/user/${user.id}`)} />
-  );
-};
-
-export default function UserList(props) {
-  const listItems = props.users.map(renderUser);
+      onClick={() => props.doEdit(user)} />
+  ));
   return (
     <List>
       {listItems}

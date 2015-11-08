@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Paper, FlatButton, AppBar, IconButton } from 'material-ui';
 
 import history from '../history';
 import { getTournaments, createTournament, saveTournament } from '../actions/tournaments';
-import MaterialIcon from '../components/material-icon';
+import { cancelEdit } from '../actions/route';
+import EditEntity from '../components/admin/edit-entity';
 import TournamentForm from '../components/admin/tournament-form';
 
 @connect(state => ({
@@ -27,15 +27,12 @@ export default class EditUser extends Component {
 
   render() {
     return (
-      <div className="row">
-        <AppBar
-          title={(this.isNew() ? 'Add' : 'Edit') + ' Tournament'}
-          iconElementLeft={<IconButton onClick={() => history.pushState(null, '/admin')}>{MaterialIcon('close')}</IconButton>}
-          iconElementRight={<FlatButton label="Save" onClick={::this.saveForm} />} />
-        <Paper zDepth={1}>
-          <TournamentForm ref="form" tournament={this.findTournament()} />
-        </Paper>
-      </div>
+      <EditEntity
+        title={(this.isNew() ? 'Add' : 'Edit') + ' Tournament'}
+        doSave={::this.saveForm}
+        doCancel={() => this.props.dispatch(cancelEdit())}>
+        <TournamentForm ref="form" tournament={this.findTournament()} />
+      </EditEntity>
     );
   }
 

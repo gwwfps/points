@@ -1,12 +1,16 @@
 defmodule Points.Api.UserApi do
   use Points.Web, :controller
-  alias Points.User
+  alias Points.UserStore
 
   def index(conn, _params) do
-    json conn, User.get_all()
+    json conn, UserStore.all()
   end
 
-  def show(conn, %{"id" => id}) do
-    json conn, User.get(id)
+  def create(conn, entity) do
+    json conn, UserStore.create(entity)
+  end
+
+  def update(conn, entity = %{"id" => id}) do
+    json conn, UserStore.update(id, entity)
   end
 end
