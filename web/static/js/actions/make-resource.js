@@ -1,6 +1,6 @@
 import api from '../utils/api';
 
-export default function makeResource({ endpoint, actionTypes: { UPDATE, CREATED, SAVED, EDIT } }) {
+export default function makeResource({ endpoint, actionTypes: { UPDATE, CREATED, SAVED, DELETED, EDIT } }) {
   return {
     fetch() {
       return dispatch => {
@@ -38,6 +38,17 @@ export default function makeResource({ endpoint, actionTypes: { UPDATE, CREATED,
           .then(() => {
             dispatch({
               type: SAVED
+            });
+          });
+      };
+    },
+
+    delete(entity) {
+      return dispatch => {
+        api.delete(`${endpoint}/${entity.id}`, entity)
+          .then(() => {
+            dispatch({
+              type: DELETED
             });
           });
       };

@@ -2,7 +2,7 @@ defmodule Points.Tournament do
   use Points.Web, :model
   use Ecto.Model
 
-  @derive {Poison.Encoder, only: [:id, :name, :description, :rules, :start_date, :phase, :visible]}
+  @derive {Poison.Encoder, only: [:id, :name, :description, :rules, :start_date, :phase, :visible, :participants, :groups]}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "tournaments" do
@@ -12,6 +12,8 @@ defmodule Points.Tournament do
     field :start_date, :integer
     field :visible, :boolean, default: false
     field :phase, :integer, default: 0
+    field :participants, {:array, :binary_id}, default: []
+    field :groups, {:array, :array}, default: []
   end
 
   @required_fields ~w(name start_date)

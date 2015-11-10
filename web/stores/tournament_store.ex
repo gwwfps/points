@@ -19,4 +19,8 @@ defmodule Points.TournamentStore do
     cs = Tournament.changeset(tournament, entity)
     Repo.update! cs
   end
+
+  def delete(id) do
+    Repo.delete! %Tournament{id: id}
+  end
 end

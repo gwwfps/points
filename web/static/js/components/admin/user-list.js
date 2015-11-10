@@ -11,8 +11,8 @@ export default function UserList(props) {
       key={user.email}
       secondaryText={user.email}
       leftAvatar={<Avatar src={user.picture} />}
-      rightIcon={user.admin && MaterialIcon('verified_user')}
-      onClick={() => props.doEdit(user)} />
+      rightIcon={user.admin ? MaterialIcon('verified_user') : void 0}
+      onTouchTap={() => props.doEdit(user)} />
   ));
   return (
     <List>

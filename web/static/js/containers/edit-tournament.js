@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import history from '../history';
-import { getTournaments, createTournament, saveTournament } from '../actions/tournaments';
+import { getTournaments, createTournament, saveTournament, deleteTournament } from '../actions/tournaments';
 import { cancelEdit } from '../actions/route';
 import EditEntity from '../components/admin/edit-entity';
 import TournamentForm from '../components/admin/tournament-form';
@@ -30,10 +30,15 @@ export default class EditUser extends Component {
       <EditEntity
         title={(this.isNew() ? 'Add' : 'Edit') + ' Tournament'}
         doSave={::this.saveForm}
-        doCancel={() => this.props.dispatch(cancelEdit())}>
+        doCancel={() => this.props.dispatch(cancelEdit())}
+        doDelete={!this.isNew() && ::this.deleteTournament}>
         <TournamentForm ref="form" tournament={this.findTournament()} />
       </EditEntity>
     );
+  }
+
+  deleteTournament() {
+    this.props.dispatch(deleteTournament(this.findTournament()))
   }
 
   saveForm() {
