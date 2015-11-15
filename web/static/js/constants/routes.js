@@ -1,6 +1,6 @@
 export default {
   root: '/',
-  tournaments: '/t/',
+  tournaments: '/t',
   login: '/login',
   admin: '/admin'
 };

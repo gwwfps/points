@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardTitle, CardText, FlatButton, Dialog } from 'material-ui';
 
-import formatPhase from '../formatters/phase';
+import formatPhase from '../../formatters/phase';
 
 
 export default class SummaryCard extends Component {

@@ -18,7 +18,7 @@ export default class AppRouter extends Component {
     return (
       <Router history={this.props.history}>
         <Route path={routes.root} onEnter={::this.defaultRoute} />
-        <Route path={`${routes.tournaments}(:tournamentId)(/:tabIndex)`} component={Tournaments} onEnter={::this.requiresAuth} />
+        <Route path={`${routes.tournaments}(/:tournamentId)(/:tab)`} component={Tournaments} onEnter={::this.requiresAuth} />
         <Route path={routes.login} component={Login} onEnter={::this.redirectAuthenticated} />
         <Route path={routes.admin} component={Admin} onEnter={::this.requiresAdmin} />
         <Route path={`${routes.admin}/tournament/(:tournamentId)`} component={EditTournament} onEnter={::this.requiresAdmin} />

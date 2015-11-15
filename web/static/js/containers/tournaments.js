@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { IconButton } from 'material-ui';
 
 import * as TournamentsActions from '../actions/tournaments';
-import MainToolbar from '../components/main-toolbar';
-import TournamentTabs from '../components/tournament-tabs';
-import SummaryCard from '../components/summary-card';
+import MainToolbar from '../components/tournaments/main-toolbar';
+import TournamentTabs from '../components/tournaments/tournament-tabs';
+import SummaryCard from '../components/tournaments/summary-card';
 import ModeButton from '../components/mode-button';
 
 
@@ -15,18 +14,34 @@ import ModeButton from '../components/mode-button';
   user: state.user
 }))
 export default class Tournaments extends Component {
+  componentDidMount() {
+    this.props.dispatch(TournamentsActions.getTournaments());
+  }
+
   render() {
-    const { tournaments, dispatch } = this.props;
+    const { tournaments, user, dispatch, params } = this.props;
+
+    if (!tournaments.length) {
+      return <div>{this.renderAdminButton()}</div>;
+    }
+
     const actions = bindActionCreators(TournamentsActions, dispatch);
 
-    const tournament = this.findSelectedTournament(tournaments);
+    const tournament = tournaments.find(tournament => tournament.id === params.tournamentId) || tournaments[0];
 
     return (
       <div>
         {this.renderAdminButton()}
-        <div className="row"><MainToolbar tournaments={tournaments.instances} tournament={tournament} actions={actions} /></div>
+        <div className="row"><MainToolbar tournaments={tournaments} tournament={tournament} doSelect={actions.selectTournament} /></div>
         <div className="row"><SummaryCard tournament={tournament} /></div>
-        <div className="row"><TournamentTabs tournament={tournament} user={this.props.user} selected={parseInt(this.props.params.tabIndex, 10)} /></div>
+        <div className="row">
+          <TournamentTabs
+            tournament={tournament}
+            user={this.props.user}
+            selected={params.tab}
+            doSelectTab={actions.selectTournamentTab}
+            isAdmin={user.admin} />
+        </div>
       </div>
     );
   }
@@ -38,9 +53,5 @@ export default class Tournaments extends Component {
     return (
       <ModeButton route="/admin" tooltip="Admin Panel" icon="dashboard" />
     );
-  }
-
-  findSelectedTournament(tournaments) {
-    return tournaments.instances.find(tournament => (tournament.id === parseInt(this.props.params.tournamentId, 10))) || tournaments.instances[0];
   }
 }

@@ -1,10 +1,25 @@
-import { SELECT_TOURNAMENT, UPDATE_TOURNAMENTS, TOURNAMENT_CREATED, TOURNAMENT_SAVED, TOURNAMENT_DELETED, EDIT_TOURNAMENT } from '../constants/action-types';
+import {
+  SELECT_TOURNAMENT,
+  SELECT_TOURNAMENT_TAB,
+  UPDATE_TOURNAMENTS,
+  TOURNAMENT_CREATED,
+  TOURNAMENT_SAVED,
+  TOURNAMENT_DELETED,
+  EDIT_TOURNAMENT
+} from '../constants/action-types';
 import makeResource from './make-resource';
 
-export function selectTournament(id) {
+export function selectTournament(tournament) {
   return {
     type: SELECT_TOURNAMENT,
-    payload: { id }
+    payload: tournament
+  };
+}
+
+export function selectTournamentTab(tournament, tab) {
+  return {
+    type: SELECT_TOURNAMENT_TAB,
+    payload: { tournament, tab }
   };
 }
 
